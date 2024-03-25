@@ -51,6 +51,10 @@ const Header = () => {
       styles.filter = getCssFilters(values.filters)
     }
 
+    if(values.effects?.mixBlendMode) {
+      styles.mixBlendMode = values.effects.mixBlendMode
+    }
+
     return styles;
   }, [values]);
   

@@ -3,10 +3,13 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Stack,
   Typography,
 } from "@mui/material";
+import SelectInput from "../../Inputs/SelectInput";
 import FiltersGroup from "./FiltersGroup";
+import { mixBlendModeChoices } from "./constants/mixBlendModeChoices";
 
 const EffectSection = () => {
   return (
@@ -19,7 +22,15 @@ const EffectSection = () => {
         <Typography>Efectos</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Stack gap={2}>
+        <Stack gap={3}>
+          <Box>
+            <SelectInput
+              label="Mix blend mode"
+              source="effects.mixBlendMode"
+              choices={mixBlendModeChoices}
+              sx={{ width: "200px" }}
+            />
+          </Box>
           <FiltersGroup />
         </Stack>
       </AccordionDetails>

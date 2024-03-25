@@ -23,11 +23,13 @@ const defaultValues = {
     url: "https://png.pngtree.com/background/20230403/original/pngtree-destroyed-in-war-post-apocalyptic-city-background-under-storm-clouds-destroyed-picture-image_2293474.jpg",
     repeat: "no-repeat",
     position: "center center",
-    size: "cover",
-    clip: "inherit"
-  },
+    size: "cover",    
+  },  
   gradients: [],
-  filters: []
+  filters: [],
+  effects:{
+    mixBlendMode: "inherit"
+  }
 };
 
 export const AppContextContext = createContext(defaultValues);

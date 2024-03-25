@@ -4,6 +4,10 @@ import configContrast from "./Contrast";
 import configDropShadow from "./DropShadow";
 import configGrayscale from "./Grayscale";
 import configHueRotate from "./HueRotate";
+import configInvert from "./Invert";
+import configOpacity from "./Opacity";
+import configSaturate from "./Saturate";
+import configSepia from "./Sepia";
 
 const configFilters = [
   configBlug,
@@ -12,6 +16,10 @@ const configFilters = [
   configDropShadow,
   configGrayscale,
   configHueRotate,
+  configInvert,
+  configOpacity,
+  configSaturate,
+  configSepia
 ]
 
 export default configFilters

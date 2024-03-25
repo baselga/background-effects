@@ -22,5 +22,3 @@ export const fontsChoices = Object.keys(fonts).map((key) => ({
   name: fonts[key].name,
   value: key
 }))
-
-console.log("dani fontsChoices", fontsChoices)
