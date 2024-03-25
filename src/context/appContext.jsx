@@ -5,7 +5,7 @@ import defaultGradient from "../components/UiControlers/GradientSection/defaulGr
 
 const defaultValues = {
   text: {
-    title: "Lorem Ipsum",
+    title: "",
     fontFamily: "alfaSlabOne",
     size: 64,
     justifyContent: "flex-start",
@@ -20,13 +20,14 @@ const defaultValues = {
   },
   background: {
     color: "#DDD",
-    url: "https://picsum.photos/id/254/1200/350",
+    url: "https://png.pngtree.com/background/20230403/original/pngtree-destroyed-in-war-post-apocalyptic-city-background-under-storm-clouds-destroyed-picture-image_2293474.jpg",
     repeat: "no-repeat",
-    position: "bottom center",
+    position: "center center",
     size: "cover",
     clip: "inherit"
   },
   gradients: [],
+  filters: []
 };
 
 export const AppContextContext = createContext(defaultValues);

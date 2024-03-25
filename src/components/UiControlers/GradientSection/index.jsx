@@ -36,7 +36,7 @@ const GradientSection = () => {
   );
 
   return (
-    <Accordion defaultExpanded>
+    <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel-gradients-content"
@@ -47,7 +47,12 @@ const GradientSection = () => {
       <AccordionDetails>
         <Stack gap={2}>
           <Box display="flex" justifyContent="flex-end">
-            <Button onClick={onAddGradient} variant="contained" color="primary">
+            <Button
+              onClick={onAddGradient}
+              variant="contained"
+              color="primary"
+              size="small"
+            >
               Añadir
             </Button>
           </Box>

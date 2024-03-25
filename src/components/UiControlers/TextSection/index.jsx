@@ -28,7 +28,7 @@ const TextSection = () => {
   } = values;
 
   return (
-    <Accordion defaultExpanded>
+    <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel-text-content"

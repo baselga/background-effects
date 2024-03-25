@@ -10,11 +10,12 @@ import useAppContextContext from "../../../context/useAppContextContext";
  *  label: string,
  *  source: string
  *  disabled?: boolean
+ *  step?: number
  *  sx?: object
  * }} param0
  * @returns
  */
-const NumberInput = ({ label, source, disabled, sx }) => {
+const NumberInput = ({ label, source, disabled, step = 1, sx, }) => {
   const { values, updateValue } = useAppContextContext();
 
   const onChange = useCallback(
@@ -32,8 +33,10 @@ const NumberInput = ({ label, source, disabled, sx }) => {
       variant="standard"
       onChange={onChange}
       disabled={disabled}
-      sx={sx}
-      
+      inputProps={{
+        step
+      }}
+      sx={sx}      
     />
   );
 };

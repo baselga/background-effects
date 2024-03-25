@@ -18,7 +18,7 @@ import SelectInput from "../../Inputs/SelectInput";
 import TextInput from "../../Inputs/TextInput";
 
 const BackgroundSection = () => (
-  <Accordion defaultExpanded>
+  <Accordion>
     <AccordionSummary
       expandIcon={<ExpandMoreIcon />}
       aria-controls="panel-background-content"

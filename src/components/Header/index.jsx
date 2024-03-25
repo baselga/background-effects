@@ -5,6 +5,7 @@ import useAppContextContext from "../../context/useAppContextContext";
 import PreviewGradient from "../PreviewGradient";
 import getCssGradient from "../../utils/getCssGradient";
 import { fonts } from "../../constants/fonts";
+import getCssFilters from "../../utils/getCssFilters";
 
 const sxPreviewGradient = {
   position: "absolute",
@@ -46,8 +47,13 @@ const Header = () => {
       styles.backgroundClip = values.background.clip;
     }
 
+    if(values.filters && values.filters.length > 0) {      
+      styles.filter = getCssFilters(values.filters)
+    }
+
     return styles;
   }, [values]);
+  
 
   const sxText = useMemo(() => {
     const styles = {
