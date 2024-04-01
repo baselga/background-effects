@@ -1,3 +1,4 @@
+import DeleteIcon from "@mui/icons-material/Delete";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   Box,
@@ -10,12 +11,11 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useCallback, useState } from "react";
 import _cloneDeep from "lodash/cloneDeep";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-import configFilters from "./Filters";
+import { useCallback, useState } from "react";
 import useAppContextContext from "../../../../context/useAppContextContext";
+import VerticalSortable from "../../../VerticalSortable";
+import configFilters from "./Filters";
 
 const FiltersGroup = () => {
   const {
@@ -23,7 +23,7 @@ const FiltersGroup = () => {
     updateValue,
   } = useAppContextContext();
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl);  
 
   const handleOpen = useCallback((event) => {
     setAnchorEl(event.currentTarget);
@@ -33,13 +33,16 @@ const FiltersGroup = () => {
     setAnchorEl(null);
   }, []);
 
-  const handleAddFilter = useCallback((filterId) => {
-    handleClose()
-    const { defaultValues } = configFilters.find(
-      (each) => each.id === filterId
-    );
-    updateValue("filters", [...filters, _cloneDeep(defaultValues)]);
-  }, [filters, handleClose, updateValue]);
+  const handleAddFilter = useCallback(
+    (filterId) => {
+      handleClose();
+      const { defaultValues } = configFilters.find(
+        (each) => each.id === filterId
+      );
+      updateValue("filters", [...filters, _cloneDeep(defaultValues)]);
+    },
+    [filters, handleClose, updateValue]
+  );
 
   const onDelete = useCallback(
     (index) => {
@@ -48,6 +51,14 @@ const FiltersGroup = () => {
       updateValue("filters", newFilters);
     },
     [filters, updateValue]
+  );
+
+  const onSort = useCallback(
+    (newFilters) => {
+      console.log("dani newFilters", newFilters);
+      updateValue("filters", newFilters);
+    },
+    [updateValue]
   );
 
   return (
@@ -75,24 +86,30 @@ const FiltersGroup = () => {
           </MenuList>
         </Menu>
       </Box>
-      {filters?.map(({ type }, index) => {
-        const { Component } = configFilters.find(({id}) => id === type)
-        return (
-          <Box
-              display="grid"
-              gridTemplateColumns="1fr auto"
-              gap={1}
-              width="100%"
-              key={index}
-            >
-              <Component baseSource={`filters.${index}`} key={index} />
-              <IconButton onClick={() => onDelete(index)} color="secondary">
-                <DeleteIcon />
-              </IconButton>
-            </Box>
-        )
-      })}
+      <VerticalSortable items={filters} onSort={onSort} >
+        {({ index, data }) => (
+          <FilterRow
+            baseSource={`filters.${index}`}
+            configFilter={data}
+            onDelete={() => onDelete(index)}
+          />
+        )}
+      </VerticalSortable>
     </Stack>
+  );
+};
+
+const FilterRow = ({ baseSource, configFilter, onDelete }) => {
+  const { type } = configFilter;
+  const { Component } = configFilters.find(({ id }) => id === type);
+
+  return (
+    <Box display="grid" gridTemplateColumns="1fr auto" gap={1} width="100%">
+      <Component baseSource={baseSource} />
+      <IconButton onClick={onDelete} color="secondary">
+        <DeleteIcon />
+      </IconButton>
+    </Box>
   );
 };
 
