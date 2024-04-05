@@ -6,6 +6,13 @@ export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
     base: "/",
+    test: {
+      globals: true,
+      include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+      environment: 'jsdom',
+      setupFiles: './src/setupTest.js',
+      CSS: true
+    }
   };
 
   if (command !== "serve") {

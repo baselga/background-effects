@@ -12,7 +12,7 @@
  */
 function getCssGradient(config) {
   const { type, angle, steps } = config;
-  const cssSteps = steps.map((step) => `${step.color} ${step.stop}%`).join(",");
+  const cssSteps = steps.map((step) => `${step.color} ${step.stop}%`).join(", ");
 
   if (type === "linear") {
     return `linear-gradient(${angle}deg, ${cssSteps})`;
